@@ -8,8 +8,6 @@ lazy val commonSettings =
     organization := "com.techmonad"
   )
 
-
-
 lazy val root =
   (project in file(".")).
     configs(IntegrationTest).

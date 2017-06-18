@@ -1,5 +1,5 @@
-#campaign-api 
-It is sbt sample project for building restful marketing campaigns with maintaining code quality and writing unit  + integration test. It is  build top of Akka HTTP.  
+## campaign-api 
+  It is sbt sample project for building restful marketing campaigns(specially for Online Travel Agency) with maintaining code quality and writing unit + integration test. It is build top of Akka HTTP. 
 
 **Run unit test:**
 ```

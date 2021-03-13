@@ -10,6 +10,6 @@ object Dependencies {
       "org.json4s" %% "json4s-native" % "3.5.4",
       "ch.qos.logback" % "logback-classic" % "1.1.7",
       "com.typesafe.akka" %% "akka-http-testkit" % "10.1.1" % "test,it",
-      "org.scalatest" %% "scalatest" % "3.0.0" % "test,it"
+      "org.scalatest" %% "scalatest" % "3.0.9" % "test,it"
     )
 }

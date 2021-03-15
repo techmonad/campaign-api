@@ -1,4 +1,5 @@
-## campaign-api 
+## campaign-api [![Codeship Status for techmonad/campaign-api](https://app.codeship.com/projects/92e63750-50d3-4706-a759-3c1540b9fc0c/status?branch=master)](https://app.codeship.com/projects/434415)
+
   It is sbt sample project for building restful marketing campaigns(specially for Online Travel Agency) with maintaining code quality and writing unit + integration test. It is build top of Akka HTTP. 
 
 **Run unit test:**

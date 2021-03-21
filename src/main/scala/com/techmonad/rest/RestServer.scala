@@ -4,11 +4,11 @@ import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.techmonad.api.CampaignApi
-import com.techmonad.logger.AgodaLogger
+import com.techmonad.logger.Logging
 import com.techmonad.service.ActorSystemProvider
 
 
-object RestServer extends App with AgodaLogger {
+object RestServer extends App with Logging {
 
   implicit val system = ActorSystem()
 

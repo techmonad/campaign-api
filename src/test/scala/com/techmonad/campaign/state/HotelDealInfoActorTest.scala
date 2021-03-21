@@ -1,12 +1,18 @@
 package com.techmonad.campaign.state
 
 import akka.actor.ActorSystem
-import akka.testkit.{ImplicitSender, TestActorRef, TestKit}
-import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
+import akka.testkit.{ImplicitSender, TestActorRef, TestActors, TestKit}
+import org.scalatest.BeforeAndAfterAll
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpecLike
 
 
-class HotelDealInfoActorTest extends TestKit(ActorSystem("HotelDealInfoActorTest")) with ImplicitSender
-  with WordSpecLike with Matchers with BeforeAndAfterAll {
+class HotelDealInfoActorTest
+  extends TestKit(ActorSystem("HotelDealInfoActorTest"))
+    with ImplicitSender
+    with AnyWordSpecLike
+    with Matchers
+    with BeforeAndAfterAll {
 
   import HotelDealInfoActor._
 
@@ -35,24 +41,24 @@ class HotelDealInfoActorTest extends TestKit(ActorSystem("HotelDealInfoActorTest
 
     "get score when hotel id exist " in {
       hotelDealInfoActor ! ScoreRequest(List(HotelAndCountryDetail(12, 90909)))
-      expectMsg(List(Score(Some(5), None,HotelAndCountryDetail(12, 90909))))
+      expectMsg(List(Score(Some(5), None, HotelAndCountryDetail(12, 90909))))
     }
 
     "get score when  country id exist " in {
       hotelDealInfoActor ! ScoreRequest(List(HotelAndCountryDetail(43434, 10)))
-      expectMsg(List(Score(None, Some(3),HotelAndCountryDetail(43434, 10))))
+      expectMsg(List(Score(None, Some(3), HotelAndCountryDetail(43434, 10))))
     }
 
     "get score when both exits" in {
       hotelDealInfoActor ! ScoreRequest(List(HotelAndCountryDetail(23, 14)))
-      expectMsg(List(Score(Some(5), Some(3),HotelAndCountryDetail(23,14))))
+      expectMsg(List(Score(Some(5), Some(3), HotelAndCountryDetail(23, 14))))
 
     }
 
   }
 
 
-  override def afterAll() = {
+  override def afterAll(): Unit = {
     TestKit.shutdownActorSystem(system)
   }
 

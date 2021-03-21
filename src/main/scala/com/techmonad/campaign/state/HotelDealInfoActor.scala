@@ -2,17 +2,16 @@ package com.techmonad.campaign.state
 
 import akka.actor.{Actor, ActorRef, Props}
 import com.techmonad.json.JsonHelper._
-import com.techmonad.logger.AgodaLogger
+import com.techmonad.logger.Logging
 import com.techmonad.util.ConfigUtility
 
-import scala.collection.immutable.TreeSet
 import scala.io.Source
 
 
 /**
   * Handle all the state changes & Maintain latest state of HotelDeal Campaign
   */
-class HotelDealInfoActor extends Actor with AgodaLogger {
+class HotelDealInfoActor extends Actor with Logging {
 
   import HotelDealInfoActor._
 
@@ -22,9 +21,9 @@ class HotelDealInfoActor extends Actor with AgodaLogger {
 
   var isEnabled = true
 
-  var hotelIds: TreeSet[Int] = _
+  var hotelIds: Set[Int] = _
 
-  var countryIds: TreeSet[Int] = _
+  var countryIds: Set[Int] = _
 
   var hotelScore: Int = _
 
@@ -70,6 +69,23 @@ class HotelDealInfoActor extends Actor with AgodaLogger {
     senderRef ! message
   }
 
+  def init() =
+    try {
+      val detailJson = Source.fromFile(detailFilePath).getLines().mkString
+      info(s"campaign detail json [$detailJson]")
+      val hotelDealInfo = parse(detailJson).extract[HotelDealInfo]
+      hotelIds = hotelDealInfo.hotelIds.toSet
+      countryIds = hotelDealInfo.countryIds.toSet
+      hotelScore = hotelDealInfo.hotelScore
+      countryScore = hotelDealInfo.countryScore
+      true
+    } catch {
+      case ex: Exception =>
+        error("Error in initialization of HotelDeal campaign", ex)
+        false
+
+    }
+
   def getScore(hotelAndCountryIds: List[HotelAndCountryDetail]): List[Score] =
     hotelAndCountryIds.map { case req@HotelAndCountryDetail(hotelId, countryId) =>
       val currentHotelScore =
@@ -85,24 +101,6 @@ class HotelDealInfoActor extends Actor with AgodaLogger {
       Score(currentHotelScore, currentCountryScore, req)
     }
 
-
-  def init() =
-    try {
-      val detailJson = Source.fromFile(detailFilePath).getLines().mkString
-      info(s"campaign detail json [$detailJson]")
-      val hotelDealInfo = parse(detailJson).extract[HotelDealInfo]
-      hotelIds = hotelDealInfo.hotelIds.to[TreeSet]
-      countryIds = hotelDealInfo.countryIds.to[TreeSet]
-      hotelScore = hotelDealInfo.hotelScore
-      countryScore = hotelDealInfo.countryScore
-      true
-    } catch {
-      case ex: Exception =>
-        error("Error in initialization of HotelDeal campaign", ex)
-        false
-
-    }
-
   override def preStart(): Unit = {
     init()
   }
@@ -113,7 +111,7 @@ object HotelDealInfoActor {
 
   val detailFilePath = ConfigUtility.getStringConf("campaign.hoteldeal.detail.file.path")
 
-  case object Refresh
+  def props() = Props[HotelDealInfoActor]
 
   case class ScoreRequest(hotelAndCountryIds: List[HotelAndCountryDetail])
 
@@ -121,14 +119,14 @@ object HotelDealInfoActor {
 
   case class Score(hotelScore: Option[Int], countryScore: Option[Int], request: HotelAndCountryDetail)
 
-  case object Status
-
   case class Status(flag: Boolean)
 
   case class Flip(flag: Boolean)
 
-  def props() = Props[HotelDealInfoActor]
-
   case class HotelDealInfo(hotelIds: List[Int], countryIds: List[Int], hotelScore: Int, countryScore: Int)
+
+  case object Refresh
+
+  case object Status
 
 }

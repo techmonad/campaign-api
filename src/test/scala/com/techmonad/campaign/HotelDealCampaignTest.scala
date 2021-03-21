@@ -3,11 +3,13 @@ package com.techmonad.campaign
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.testkit.{RouteTestTimeout, ScalatestRouteTest}
 import com.techmonad.service.ActorSystemProvider
-import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
+import org.scalatest.wordspec.AnyWordSpecLike
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.BeforeAndAfterAll
 
 import scala.concurrent.duration._
 
-class HotelDealCampaignTest extends WordSpecLike with ScalatestRouteTest with Matchers with BeforeAndAfterAll {
+class HotelDealCampaignTest extends AnyWordSpecLike with ScalatestRouteTest with Matchers with BeforeAndAfterAll {
 
   implicit val defaultTimeout = RouteTestTimeout(10.seconds)
 

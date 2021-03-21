@@ -6,16 +6,16 @@ import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
 import akka.util.Timeout
 import com.techmonad.campaign.state.HotelDealInfoActor
-import com.techmonad.campaign.state.HotelDealInfoActor.ScoreRequest
 import com.techmonad.constant.Constants._
 import com.techmonad.json.JsonHelper._
-import com.techmonad.logger.AgodaLogger
+import com.techmonad.logger.Logging
 import com.techmonad.service.ActorSystemProvider
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
+import scala.language.postfixOps
 
-trait HotelDealCampaign extends Campaign with AgodaLogger {
+trait HotelDealCampaign extends Campaign with Logging {
   self: ActorSystemProvider =>
 
   import HotelDealInfoActor._

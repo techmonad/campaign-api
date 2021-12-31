@@ -4,7 +4,7 @@ lazy val commonSettings =
   Seq(
     name := "campaign-api",
     version := "1.0",
-    scalaVersion := "2.13.5",
+    scalaVersion := "2.13.7",
     organization := "com.techmonad"
   )
 

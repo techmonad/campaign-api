@@ -1,4 +1,4 @@
-## campaign-api [![Codeship Status for techmonad/campaign-api](https://app.codeship.com/projects/92e63750-50d3-4706-a759-3c1540b9fc0c/status?branch=master)](https://app.codeship.com/projects/434415)
+## campaign-api [![Scala CI](https://github.com/techmonad/campaign-api/actions/workflows/scala.yml/badge.svg)](https://github.com/techmonad/campaign-api/actions/workflows/scala.yml)
 
   It is sbt sample project for building restful marketing campaigns(specially for Online Travel Agency) with maintaining code quality and writing unit + integration test. It is build top of Akka HTTP. 
 

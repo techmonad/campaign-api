@@ -20,3 +20,17 @@ jobs:
         distribution: 'adopt'
     - name: Run Tests
       run: sbt clean compile test
+      
+  merge:
+    name: Merge dependency update
+    if: github.actor == 'anand-singh'
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+    - name: merge PR
+      uses: desbo/merge-pr-action@v0
+      with:
+        GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+        ALLOWED_UPDATE: major
+        MERGE_METHOD: squash

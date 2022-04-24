@@ -11,6 +11,6 @@ object Dependencies {
       "ch.qos.logback" % "logback-classic" % "1.2.10",
       "com.typesafe.akka" %% "akka-testkit" % "2.6.18" % "test,it",
       "com.typesafe.akka" %% "akka-http-testkit" % "10.2.8" % "test,it",
-      "org.scalatest" %% "scalatest" % "3.2.10" % "test,it"
+      "org.scalatest" %% "scalatest" % "3.2.11" % "test,it"
     )
 }

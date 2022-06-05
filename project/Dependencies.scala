@@ -7,7 +7,7 @@ object Dependencies {
       "com.typesafe.akka" %% "akka-actor" % "2.6.18",
       "com.typesafe.akka" %% "akka-stream" % "2.6.18",
       "com.typesafe.akka" %% "akka-http" % "10.2.8",
-      "org.json4s" %% "json4s-native" % "4.0.4",
+      "org.json4s" %% "json4s-native" % "4.0.5",
       "ch.qos.logback" % "logback-classic" % "1.2.10",
       "com.typesafe.akka" %% "akka-testkit" % "2.6.18" % "test,it",
       "com.typesafe.akka" %% "akka-http-testkit" % "10.2.8" % "test,it",

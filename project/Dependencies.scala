@@ -8,7 +8,7 @@ object Dependencies {
       "com.typesafe.akka" %% "akka-stream" % "2.6.19",
       "com.typesafe.akka" %% "akka-http" % "10.2.9",
       "org.json4s" %% "json4s-native" % "4.0.6",
-      "ch.qos.logback" % "logback-classic" % "1.4.1",
+      "ch.qos.logback" % "logback-classic" % "1.4.3",
       "com.typesafe.akka" %% "akka-testkit" % "2.6.19" % "test,it",
       "com.typesafe.akka" %% "akka-http-testkit" % "10.2.9" % "test,it",
       "org.scalatest" %% "scalatest" % "3.2.14" % "test,it"
